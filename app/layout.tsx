@@ -1,6 +1,15 @@
+import Navbar from '@/components/Navbar'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import AuthProvider from '@/components/AuthProvider'
+import { ReduxProviders } from '@/components/ReduxProvider'
+import QueryProvider from '@/components/QueryProvider'
+import NavigationBar from '@/components/Ui/NavigationBar'
+import Example from '@/componenthook/ui/Example'
+import Test from '@/componenthook/ui/test'
+import SidebarNavigation from '@/componenthook/ui/test2'
+import Summary from '@/components/Summary'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,7 +25,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <AuthProvider>
+      <ReduxProviders>
+        <QueryProvider>
+      <body className={inter.className}>
+      {/*   <Example/>
+        <Test/> */}
+       
+      <Navbar/> 
+      <Summary/>
+        {children}
+        </body>
+        </QueryProvider>
+        </ReduxProviders>
+      </AuthProvider>
     </html>
   )
 }
